@@ -70,12 +70,18 @@ Replace the example step-by-step instructions with your own.
 3. Get your cluster running and open the redshift workbench
 
 4. On the redshift workbench create a database and choose a name
-!
+
+![Create a database](create-rds-database.png)
+
 5. Load the data from you s3 bucket on the database you created , make sure that you have the necessery permissions to acess the bucket from the redshift
+
+![Load data from the s3 bucket you have created before](s3load.png)
 
 ## Redshift data and databases
 
 I have loaded some data of a fake retail and wholesale company to mimetize a process where someone would need to get a some data from a s3 bucket and dump this data into a database on redshift and from this point to clean and organize data with SQL and after this process to connect a Power Bi dashboard using the cluster endpoint so a stakeholder could understand,manage and extract data that could help him/her to developt some kpis in order to understand the business environment and to seek for opportunities or threats that could harm the company's outcome.
+
+![Retail & Wholesale schema](retail-schema.png)
 
 With the schema i get i could create a pareto analysis to show what are the products responsible for 80% of the sales and name them accordingly to the ABC analysis, where A is the top tier products responsible for 80& of the total sales, and B between 80 and 95% or 15 % of the total sales and C the other 5% of the sales, therefore we can see in this type of business what type of products are performing well and those that are not. This is a common approach to control and manage product inventory and could be applied to many business types as drugstores,retails and wholesales, food and beverages.
 
@@ -184,6 +190,20 @@ ORDER BY
 ## Connect to Power BI
 
 After we created the pareto analysis on the redshift workbench we need to open a blank power bi file , go to 'get data', type redshift and on the server window paste you endpoint that you can get from your cluster general information page, on the database you paste the name of the database you have created, and in the advanced options you can paste the pareto query to fetch only the analysis we already created.
+
+## rds workbench and Pareto query:
+![Pareto query on redshift workbench](rds-workbench.png)
+
+
+## Connecting using endpoint 
+
+![Redshift endpoint on redshift cluster console](rds-endpoint.png)
+
+## Insert the query into powerbi file
+
+![Redshift configuration on power bi](pbi-rds-query.png)
+
+![Result from the connection](pbi-rds-data.png)
 
 After that we can create a few kpis and a get a few insights to help the stakeholders use data to get better decisions.
 
