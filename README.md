@@ -6,8 +6,9 @@ A project that shows how one could extract data from a data source and distribut
 
 - Extract data from some source -- In this project we will cover how to get data from aws S3 and another approach using pyspark
 - Dump the data into a SQL managment tool where the B.I analysts can use to develop data analysis
-- Develop a dashboard connecting the databases we have created 
-
+- Develop a dashboard connecting the databases we have created
+- 
+![S3-Redshift Approach].(redshift spark.png).
 
 Her1e you want to write a short overview of the goals of your project and how it works at a high level. If possible, include one or two images of the end product and architecture diagram (see examples below). diagrams.net is a great tool for creating architecture diagrams.
 
