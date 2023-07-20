@@ -94,6 +94,7 @@ This CTE calculates various summary metrics for each product category, including
            average order value (average_order_value), 
            and sales percentage (sales_percentage).
 
+~~~~
 The COUNT(DISTINCT order_id) calculates the count of unique order IDs for each product category.
 
 The SUM(soma_de_price) calculates the total sales for each product category.
@@ -101,9 +102,9 @@ The SUM(soma_de_price) calculates the total sales for each product category.
 The AVG(soma_de_price) calculates the average order value for each product category.
 
 The (SELECT SUM(soma_de_price) FROM schema_v1.tabela_estudos_v1) calculates the total profit across all product categories.
-
+~~~~
 ### 1.2. pareto_distribution CTE:
-
+~~~~
 This CTE extends the category_summary CTE by adding columns related to the Pareto distribution analysis.
 
 The (SELECT SUM(total_sales) FROM category_summary) calculates the total profit across all product categories (total_profit).
@@ -111,7 +112,7 @@ The (SELECT SUM(total_sales) FROM category_summary) calculates the total profit 
 The (SELECT SUM(total_sales) * 0.8 FROM category_summary) calculates the threshold for the Pareto distribution (pareto_threshold).
 
 The SUM(total_sales) OVER (ORDER BY total_sales DESC) calculates the cumulative profit for each product category (cumulative_profit).
-
+~~~~
 ### Step 2: Final Query
 
 The final query selects columns from the pareto_distribution CTE and performs additional calculations for the pareto_category column.
@@ -122,7 +123,6 @@ The final query selects columns from the pareto_distribution CTE and performs ad
            sales_per_order, 
            average_order_value, 
            and sales_percentage columns are selected directly from the pareto_distribution CTE.
-
 The CASE WHEN statement is used to assign the pareto_category based on the cumulative profit compared to the Pareto threshold.
 
 When the cumulative profit is less than or equal to the Pareto threshold (pareto_threshold), the category is assigned as 'A'.
@@ -131,10 +131,11 @@ When the cumulative profit is less than or equal to 95% of the total profit (tot
 
 Otherwise, the category is assigned as 'C'.
 
-The result of this query will provide the product category names, total orders, total sales, sales per order, average order value, sales percentage, and the Pareto category ('A', 'B', or 'C') for the top 10 categories based on total sales.'''
+The result of this query will provide the product category names, total orders, total sales, sales per order, average order value, sales percentage, and the Pareto category ('A', 'B', or 'C') for the top 10 categories based on total sales.
 
 ### Pareto query:
 
+~~~~
 WITH category_summary AS (
     SELECT
         pr.product_category_name AS categoria_produto,
@@ -178,6 +179,7 @@ FROM
     pareto_distribution AS pd
 ORDER BY
     pareto_category ASC;
+~~~~
 
 ## Connect to Power BI
 
