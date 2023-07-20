@@ -86,10 +86,10 @@ I have loaded some data of a fake retail and wholesale company to mimetize a pro
 
 With the schema i get i could create a pareto analysis to show what are the products responsible for 80% of the sales and name them accordingly to the ABC analysis, where A is the top tier products responsible for 80& of the total sales, and B between 80 and 95% or 15 % of the total sales and C the other 5% of the sales, therefore we can see in this type of business what type of products are performing well and those that are not. This is a common approach to control and manage product inventory and could be applied to many business types as drugstores,retails and wholesales, food and beverages.
 
+![Pareto 80/20 rule using abc analysis](pareto.png)
 
 ## SQL Code used on redshift:
 
-'''
 ### Step 1: Common Table Expressions (CTEs)
 The query starts by defining two CTEs: category_summary and pareto_distribution.
 1.1. category_summary CTE:
@@ -208,10 +208,14 @@ After we created the pareto analysis on the redshift workbench we need to open a
 
 After that we can create a few kpis and a get a few insights to help the stakeholders use data to get better decisions.
 
+![Power Bi dashboard with abc analysis](imagem_2023-07-20-193927976.png)
+
 ## Lessons Learned
+
+WIP
 
 It's good to reflect on what you learned throughout the process of building this project. Here you might discuss what you would have done differently if you had more time/money/data. Did you end up choosing the right tools or would you try something else next time?
 
 ## Contact
 
-Please feel free to contact me if you have any questions at: LinkedIn, Twitter
+Please feel free to contact me if you have any questions at: https://www.linkedin.com/in/felipe-mauriz-rodrigues/
