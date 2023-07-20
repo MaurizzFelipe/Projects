@@ -1,12 +1,15 @@
-# Data Engineering Project Template
+# Data Eng project
 
-This is a template you can use for your next data engineering portfolio project. To copy it, log into GitHub and click on the **Use this template** button above.
-
-![GitHub use this template button](use-this-template-button.png)
+A project that shows how one could extract data from a data source and distribute this data to a stakeholder by developing an analytical dashboard.
 
 ## Overview
 
-Here you want to write a short overview of the goals of your project and how it works at a high level. If possible, include one or two images of the end product and architecture diagram (see examples below). diagrams.net is a great tool for creating architecture diagrams.
+- Extract data from some source -- In this project we will cover how to get data from aws S3 and another approach using pyspark
+- Dump the data into a SQL managment tool where the B.I analysts can use to develop data analysis
+- Develop a dashboard connecting the databases we have created 
+
+
+Her1e you want to write a short overview of the goals of your project and how it works at a high level. If possible, include one or two images of the end product and architecture diagram (see examples below). diagrams.net is a great tool for creating architecture diagrams.
 
 ### Data Visualization
 
