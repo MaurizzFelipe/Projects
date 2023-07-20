@@ -28,18 +28,27 @@ We will also try to do the same process but using a jupyter notebook using spark
 
 Directions or anything needed before running the project.
 
-- Prerequisite 1
-- Prerequisite 2
-- Prerequisite 3
+- Aws account 
+- Spark installed , to see more information check the apache documentation https://spark.apache.org/docs/latest/
+- Postgresql installed , download here https://www.postgresql.org/download/
+- Any IDE
+- 
 
-## How to Run This Project
+## How to Run The s3 redshift data pipeline Project
 
 Replace the example step-by-step instructions with your own.
-
-1. Install x packages
-2. Run command: `python x`
-3. Make sure it's running properly by checking z
-4. To clean up at the end, run script: `python cleanup.py`
+* You might have several s3 buckets on your organization and you can use those files in this process to create a whole set of databases on redshift
+* We are assuming that you do not have any s3 bucket and it starting to know the tools i've mentioned before.
+## Create a s3 bucket
+1. Open your AWS console and open the s3 service*
+2. Click on 'creat bucket'
+3. Choose your bucket name 
+4. you get get any type of data you want to practice at https://www.kaggle.com/datasets
+5. Dump the csv files you have downloaded into the s3 bucket you have created
+## Create a redshift cluster  
+1. On your AWS console open the redshift service
+2. Create a cluster, make sure to use the proper configurations to not get overcharged (check the doc to more details https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-launch-sample-cluster.html)
+3. Get your cluster running and open the redshift workbench
 
 ## Lessons Learned
 
