@@ -41,13 +41,17 @@ Replace the example step-by-step instructions with your own.
 * We are assuming that you do not have any s3 bucket and it starting to know the tools i've mentioned before.
 ## Create a s3 bucket
 1. Open your AWS console and open the s3 service*
+![aws-console](aws-console.png)
 2. Click on 'creat bucket'
+![Create Bucket](create-bucket.png)
 3. Choose your bucket name 
-4. you get get any type of data you want to practice at https://www.kaggle.com/datasets
+![Configure you bucket](configure-bucket.png)
+4. you can get any type of data you want to practice at https://www.kaggle.com/datasets
 5. Dump the csv files you have downloaded into the s3 bucket you have created
 ## Create a redshift cluster  
 1. On your AWS console open the redshift service
 2. Create a cluster, make sure to use the proper configurations to not get overcharged (check the doc to more details https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-launch-sample-cluster.html)
+![Create redshift cluster](rds-create-cluster.png)
 3. Get your cluster running and open the redshift workbench
 
 ## Lessons Learned
