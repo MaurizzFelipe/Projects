@@ -2,8 +2,9 @@
 
 A project that shows how one could extract data from a data source and distribute this data to a stakeholder by developing an analytical dashboard, We will focus only on getting data beyond the external data source, so we are assuming that you already have a data process that dumps data into AWS S3 buckets. You can use fake data to practice the process.
 
-## Overview
-Steps that we will see:
+# Overview
+
+# Steps that we will see:
 
 # - How to dump and Extract data from some source 
            In this project we will cover how to get dump and get data from aws S3 and another approach using pyspark
@@ -11,7 +12,7 @@ Steps that we will see:
 # - Dump the data into a SQL managment tool where the B.I analysts can use to develop data analysis 
            we can use redshift managment tool and a python approach to dump data into postgresql
   
-## - Connect the databases we Develop and create a dashboard with the data to understand data patterns.
+# - Connect the databases we Develop and create a dashboard with the data to understand data patterns.
   
 
 The main objective is to show how to create a simple data pipeline and how a data analyst can use some scalabe tools that will work based on the project requirements, the S3 bucket is a widely used tool to storage and distribute data across the organization data systems and redshift is a friendly aws service that is also powerfull to provide data and data accessibility due to aws governance policies, and redshift also allows us to connect and create a Power bi dashboard with our data to answer mapped questions.
