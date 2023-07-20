@@ -31,14 +31,14 @@ Directions or anything needed before running the project.
 - Aws account 
 - Spark installed , to see more information check the apache documentation https://spark.apache.org/docs/latest/
 - Postgresql installed , download here https://www.postgresql.org/download/
-- Any IDE
-- 
+- Any IDE 
 
 ## How to Run The s3 redshift data pipeline Project
 
 Replace the example step-by-step instructions with your own.
 * You might have several s3 buckets on your organization and you can use those files in this process to create a whole set of databases on redshift
 * We are assuming that you do not have any s3 bucket and it starting to know the tools i've mentioned before.
+
 ## Create a s3 bucket
 
 1. Open your AWS console and open the s3 service*
@@ -70,7 +70,7 @@ Replace the example step-by-step instructions with your own.
 3. Get your cluster running and open the redshift workbench
 
 4. On the redshift workbench create a database and choose a name
-
+!
 5. Load the data from you s3 bucket on the database you created , make sure that you have the necessery permissions to acess the bucket from the redshift
 
 ## Redshift data and databases
