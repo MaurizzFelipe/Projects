@@ -17,13 +17,12 @@ Steps that we will see:
 ![S3/ Redshift Project architecture](rds-spark.png).
 
 
+### The main objective is to show how to create a simple data pipeline and how a data analyst can use some scalabe tools that will work based on the project requirements, the S3 bucket is a widely used tool to storage and distribute data across the organization data systems and redshift is a friendly aws service that is also powerfull to provide data and data accessibility due to aws governance policies, and redshift also allows us to connect and create a Power bi dashboard with our data to answer mapped questions.
+  
+### We will also try to do the same process but using a jupyter notebook using spark and pyspark to get data from s3/test_folder and create a database on postgresql which allows us to connect and create a Power bi dashboard with our data to answer mapped questions. We will use postgresql as a second option to show that we can use different approachs for the same problem and offer different solutions to the stakeholders necessities.
 
 
-### Data Visualization
-
-![Example dashboard image](example-dashboard.png)
-
-### Data Architecture
+ 
 
 ![Example architecture image](example-architecture.png)
 
