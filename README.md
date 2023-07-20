@@ -1,8 +1,6 @@
 # Data Eng project
 
-A project that shows how one could extract data from a data source and distribute this data to a stakeholder by developing an analytical dashboard.
-We will focus only on getting data beyond the external data source, so we are assuming that you already have a data process that dumps data into AWS S3 buckets.
-You can use fake data to practice the process.
+A project that shows how one could extract data from a data source and distribute this data to a stakeholder by developing an analytical dashboard, We will focus only on getting data beyond the external data source, so we are assuming that you already have a data process that dumps data into AWS S3 buckets. You can use fake data to practice the process.
 
 ## Overview
 Steps that we will see:
@@ -12,11 +10,12 @@ Steps that we will see:
 ### - Dump the data into a SQL managment tool where the B.I analysts can use to develop data analysis -- we can use redshift managment tool and a python approach to dump data into postgresql
   
 ### - Connect the databases we Develop and create a dashboard with the data to understand data patterns.
-  
-![S3/ Redshift Project architecture](rds-spark.png).
-This is just a simplified chart that illustrate what tools we will cover
 
-Her1e you want to write a short overview of the goals of your project and how it works at a high level. If possible, include one or two images of the end product and architecture diagram (see examples below). diagrams.net is a great tool for creating architecture diagrams.
+### [b] This is just a simplified chart that illustrate what tools we will cover  
+![S3/ Redshift Project architecture](rds-spark.png).
+
+
+
 
 ### Data Visualization
 
