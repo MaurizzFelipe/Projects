@@ -5,13 +5,15 @@ A project that shows how one could extract data from a data source and distribut
 ## Overview
 Steps that we will see:
 
-### - How to dump and Extract data from some source -- In this project we will cover how to get dump and get data from aws S3 and another approach using pyspark
+### - How to dump and Extract data from some source 
+-- In this project we will cover how to get dump and get data from aws S3 and another approach using pyspark
 
-### - Dump the data into a SQL managment tool where the B.I analysts can use to develop data analysis -- we can use redshift managment tool and a python approach to dump data into postgresql
+### - Dump the data into a SQL managment tool where the B.I analysts can use to develop data analysis 
+-- we can use redshift managment tool and a python approach to dump data into postgresql
   
 ### - Connect the databases we Develop and create a dashboard with the data to understand data patterns.
 
-### [b] This is just a simplified chart that illustrate what tools we will cover  
+### *This is just a simplified chart that illustrate what tools we will cover  
 ![S3/ Redshift Project architecture](rds-spark.png).
 
 
