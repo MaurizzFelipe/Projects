@@ -221,12 +221,16 @@ Open the ubuntu cmd and type
 
            wget https://dlcdn.apache.org/spark/spark-3.4.1/spark-3.4.1-bin-hadoop3.tgz
 
+![Download hadoop](download-apache.png)
+
 It will start downloading the apache spark 
 
 To unzip the file type
 
            sudo apt-get install tar
            tar xvf spark-3.4.1-bin-hadoop3.tgz
+
+![unzip](unzip-apache.png)
 
 You will need to set up some environment variables (optional but recommended) by adding the following lines
 
@@ -246,6 +250,8 @@ After downloading and unziping spark apache on your machine you can navigate to 
            spark-shell
            
 Spark should start running but you also should check how to set the proper host and port in  order to allow spark connections with your applications.
+
+![spark-shell](run-spark.png)
 
 ## Creating a spark session
 
@@ -415,7 +421,13 @@ spark.stop()conn = psycopg2.connect(
 )
 conn.autocommit = True
 ```
-After running this code you should have sent some data to a postgresql schema and created a database if it not existed, you should be able to use SQL to fetch you data now on pgAdmin 4 
+After running this code you should have sent some data to a postgresql schema and created a database if it not existed, you should be able to use SQL to fetch you data now on pgAdmin 4.
+
+## Connect Postgresql to Power Bi
+
+Open a Power Bi file and go to 'get data' then type 'postgresql' , put your server and the database you want to access , then it should ask for your credentials and after that you should see the tables available at your database.
+
+
 ## Lessons Learned
 
 WIP
