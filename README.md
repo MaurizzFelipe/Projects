@@ -14,13 +14,21 @@ The main objective is to showcase scalable tools that cater to project requireme
 
 # Steps that we will see:
 
-Data Extraction: The project will showcase how to efficiently extract data from the AWS S3 bucket using Python and the boto3 library. We will handle authentication by retrieving AWS credentials from environment variables.
+## Data Extraction: 
 
-Data Preprocessing: The extracted data may need cleaning, transformation, or aggregation before visualization. We will use pandas and PySpark to preprocess the data, making it suitable for analysis.
+The project will showcase how to efficiently extract data from the AWS S3 bucket using Python and the boto3 library. We will handle authentication by retrieving AWS credentials from environment variables.
 
-Dump the Data into a SQL Management Tool: In this project, we will use Redshift as a SQL management tool to store the preprocessed data. This allows BI analysts to use SQL for data analysis.
+## Data Preprocessing: 
 
-Database Connection and Dashboard Development: We will connect the databases we develop and create an analytical dashboard with the data to understand data patterns. Leveraging popular data visualization libraries like Dash or Streamlit, the dashboard will include charts, graphs, and other visualizations to provide stakeholders with insights into the data.
+The extracted data may need cleaning, transformation, or aggregation before visualization. We will use pandas and PySpark to preprocess the data, making it suitable for analysis.
+
+## Dump the Data into a SQL Management Tool: 
+
+In this project, we will use Redshift as a SQL management tool to store the preprocessed data. This allows BI analysts to use SQL for data analysis.
+
+## Database Connection and Dashboard Development: 
+
+We will connect the databases we develop and create an analytical dashboard with the data to understand data patterns. Leveraging popular data visualization libraries like Dash or Streamlit, the dashboard will include charts, graphs, and other visualizations to provide stakeholders with insights into the data.
 
 Please note that for the sake of simplicity and to practice the data processing steps, we will use fake data. However, the same approach can be applied to real-world data stored in AWS S3 buckets.
 
@@ -313,7 +321,7 @@ In this example, we are downloading Spark version 3.4.1 with Hadoop 3.
 ## Extract Spark Archive:
 
 Once the download is complete, extract the Spark archive using the following command:
-bash
+
 
            tar -xvzf spark-3.4.1-bin-hadoop3.tgz
 
@@ -351,8 +359,6 @@ This should launch the Spark shell, indicating that Spark is installed and ready
 ## Run the PySpark/PostgreSQL Data Pipeline Project:
 
 With Spark set up on your machine, you can proceed with the PySpark/PostgreSQL data pipeline project, where you will learn how to use PySpark to process data and create a PostgreSQL database to store and manage the preprocessed data.
-
-
 
 
 ## Creating a spark session
@@ -527,7 +533,40 @@ After running this code you should have sent some data to a postgresql schema an
 
 ## Connect Postgresql to Power Bi
 
-Open a Power Bi file and go to 'get data' then type 'postgresql' , put your server and the database you want to access , then it should ask for your credentials and after that you should see the tables available at your database.
+Open Power BI:
+
+Launch Power BI on your computer.
+
+## Get Data from PostgreSQL:
+
+In Power BI, go to the "Home" tab on the top ribbon and click on "Get Data."
+Select PostgreSQL:
+
+In the "Get Data" window, search for "PostgreSQL" and select "PostgreSQL database" from the available data sources.
+Connect to PostgreSQL:
+
+In the "PostgreSQL database" window, enter the server name or IP address in the "Server" field. This is the location of your PostgreSQL server.
+
+In the "Database" field, enter the name of the specific database you want to access.
+
+## Provide Credentials:
+
+After entering the server and database information, Power BI will ask you to provide your credentials for authentication.
+
+Enter your PostgreSQL username and password to establish the connection to the database.
+
+## Load Data:
+
+Once the credentials are verified, Power BI will connect to the PostgreSQL database and retrieve a list of available tables and views.
+Select the tables you want to import into Power BI or simply choose to load the entire dataset.
+
+## Create Your Report:
+
+Power BI will load the selected data into the report canvas. You can now start creating your interactive report by adding charts, graphs, and other visualizations.
+
+Use the loaded data to create insightful dashboards and explore the data's patterns and insights.
+
+By following these instructions, you can easily connect Power BI to your PostgreSQL database, retrieve data, and create dynamic reports and visualizations for your analysis needs.
 
 ![postgresql](postgres-dash.png)
 
