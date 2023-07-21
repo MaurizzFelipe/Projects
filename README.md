@@ -1,92 +1,125 @@
-# Data Eng project
+# Project Title: Analytical Dashboard for Data Distribution from AWS S3
 
-A project that shows how one could extract data from a data source and distribute this data to a stakeholder by developing an analytical dashboard, We will focus only on getting data beyond the external data source, so we are assuming that you already have a data process that dumps data into AWS S3 buckets. You can use fake data to practice the process.
+Description:
+
+This project demonstrates how to create a simple data pipeline to extract data from AWS S3 and another approach using PySpark. 
+
+We will explore two methods: 
+
+           one that uses AWS S3 to dump and extract data and another that utilizes PySpark to achieve the same. 
+
+The main objective is to showcase scalable tools that cater to project requirements. AWS S3 serves as a widely used tool for storing and distributing data across an organization's data systems, while Redshift provides a powerful SQL management tool that BI analysts can use for data analysis.
 
 # Overview
 
 # Steps that we will see:
 
-# - How to dump and Extract data from some source 
-           In this project we will cover how to get dump and get data from aws S3 and another approach using pyspark
+Data Extraction: The project will showcase how to efficiently extract data from the AWS S3 bucket using Python and the boto3 library. We will handle authentication by retrieving AWS credentials from environment variables.
 
-# - Dump the data into a SQL managment tool where the B.I analysts can use to develop data analysis 
-           we can use redshift managment tool and a python approach to dump data into postgresql
-  
-# - Connect the databases we Develop and create a dashboard with the data to understand data patterns.
-  
+Data Preprocessing: The extracted data may need cleaning, transformation, or aggregation before visualization. We will use pandas and PySpark to preprocess the data, making it suitable for analysis.
 
-The main objective is to show how to create a simple data pipeline and how a data analyst can use some scalabe tools that will work based on the project requirements, the S3 bucket is a widely used tool to storage and distribute data across the organization data systems and redshift is a friendly aws service that is also powerfull to provide data and data accessibility due to aws governance policies, and redshift also allows us to connect and create a Power bi dashboard with our data to answer mapped questions.
+Dump the Data into a SQL Management Tool: In this project, we will use Redshift as a SQL management tool to store the preprocessed data. This allows BI analysts to use SQL for data analysis.
+
+Database Connection and Dashboard Development: We will connect the databases we develop and create an analytical dashboard with the data to understand data patterns. Leveraging popular data visualization libraries like Dash or Streamlit, the dashboard will include charts, graphs, and other visualizations to provide stakeholders with insights into the data.
+
+Please note that for the sake of simplicity and to practice the data processing steps, we will use fake data. However, the same approach can be applied to real-world data stored in AWS S3 buckets.
 
 ![S3/ Redshift Project architecture](rds-spark.png)
 
   
-We will also try to do the same process but using a jupyter notebook using spark and pyspark to get data from s3/test_folder and create a database on postgresql which allows us to connect and create a Power bi dashboard with our data to answer mapped questions. We will use postgresql as a second option to show that we can use different approachs for the same problem and offer different solutions to the stakeholders necessities.
+Additionally, we will explore an alternative approach using Jupyter Notebook, Spark, and PySpark to get data from s3/test_folder and create a database on PostgreSQL. This alternative method demonstrates how different approaches can offer various solutions to stakeholders' necessities.
 
 ![CSV/Postgresql using spark Project architecture](pyspark.png)
  
 
-## Prerequisites
+## Skills and Technologies:
 
-Directions or anything needed before running the project.
+Python
 
-- Aws account 
-- Spark installed , to see more information check the apache documentation https://spark.apache.org/docs/latest/
-- Postgresql installed , download here https://www.postgresql.org/download/
-- Any IDE 
+Pandas
+
+PySpark
+
+AWS S3
+
+AWS Redshift
+
+Boto3 (for AWS interaction)
+
+PowerBi/tableau (for dashboard development)
+
+Data preprocessing and visualization techniques
 
 ## How to Run The s3 redshift data pipeline Project
+To run the S3 to Redshift Data Pipeline project, follow the steps below. 
+This assumes that you do not have any existing S3 buckets and will start from scratch.
+
+Step 1: Create an S3 Bucket
+
+Open your AWS console and navigate to the S3 service.
+
+![aws-console](aws-console.png)
+
+Click on the "Create Bucket" button to create a new bucket.
+
+![Create Bucket](create-bucket.png)
+
+Choose a unique name for your bucket and configure the settings as needed.
+
+You can find practice data from various sources, such as Kaggle datasets.
+
+Upload the CSV files you downloaded from Kaggle or any other source into the S3 bucket you created.
+
+Note: It's important to ensure proper security measures for your S3 bucket to prevent data leakage in a real organization.
+
+Step 2: Create a Redshift Cluster and a Database
+
+On your AWS console, open the Redshift service.
+
+Create a new cluster, being mindful of the configurations to avoid unnecessary costs. Refer to the AWS documentation for more details on this step.
+
+![Create redshift cluster](rds-create-cluster.png)
+
+Wait for your Redshift cluster to be in a "Running" state and then open the Redshift Workbench.
+
+Within the Redshift Workbench, create a new database and give it a name.
+
+Step 3: Load Data from S3 into the Redshift Database
+
+Ensure that you have the necessary permissions to access the S3 bucket from the Redshift cluster.
+
+Use the Redshift Workbench to load the data from the S3 bucket you created earlier into the database you just created.
+
+![Load data from the s3 bucket you have created before](s3load.png)
+
+Step 4: Redshift Data and Databases
+
+In this project, we have used data from a fake retail and wholesale company to simulate the process of getting data from an S3 bucket, dumping it into a Redshift database, cleaning, and organizing the data using SQL. The objective is to create a Power BI dashboard to allow stakeholders to understand, manage, and extract data for analyzing key performance indicators (KPIs) and identifying opportunities or threats.
+
+The schema of the retail and wholesale company's data is shown below:
+
+![Retail & Wholesale schema](retail-schema.png)
+
+                                                       Retail & Wholesale Schema
+
+With this schema, you can perform various analyses, such as a Pareto analysis to identify the products responsible for 80% of the sales (ABC analysis). This helps to classify products as follows:
+
+A: Top-tier products responsible for 80% of the total sales.
+B: Products responsible for sales between 80% and 95% (15% of total sales).
+C: Products responsible for the remaining 5% of sales.
+
+This approach is commonly used to manage product inventory and can be applied to various types of businesses, such as drugstores, retailers, wholesalers, food and beverages, and more.
+
+                                                       Pareto 80/20 Rule using ABC Analysis
+
+![Pareto 80/20 rule using abc analysis](pareto.png)
+
+By following these steps and leveraging the data pipeline from S3 to Redshift, you can gain valuable insights into your data and create meaningful visualizations and analyses using tools like Power BI to make informed business decisions.
 
 Replace the example step-by-step instructions with your own.
 * You might have several s3 buckets on your organization and you can use those files in this process to create a whole set of databases on redshift
 * We are assuming that you do not have any s3 bucket and it starting to know the tools i've mentioned before.
 
-## Create a s3 bucket
-
-1. Open your AWS console and open the s3 service*
-
-![aws-console](aws-console.png)
-
-2. Click on 'creat bucket'
-
-![Create Bucket](create-bucket.png)
-
-3. Choose your bucket name 
-
-![Configure you bucket](configure-bucket.png)
-
-4. you can get any type of data you want to practice at https://www.kaggle.com/datasets
-
-5. Dump the csv files you have downloaded into the s3 bucket you have created
-   
-   NOTES: You can see that my bucket is public for teaching purposes, but at any organization this is a major security problem and should be addressed                                             properly or else it could generate serious consequences due to data leaking.
-   
-## Create a redshift cluster and a database  
-
-1. On your AWS console open the redshift service
-
-2. Create a cluster, make sure to use the proper configurations to not get overcharged (check the doc to more details https://docs.aws.amazon.com/redshift/latest/gsg/rs-gsg-launch-sample-cluster.html)
-
-![Create redshift cluster](rds-create-cluster.png)
-
-3. Get your cluster running and open the redshift workbench
-
-4. On the redshift workbench create a database and choose a name
-
-![Create a database](create-rds-database.png)
-
-5. Load the data from you s3 bucket on the database you created , make sure that you have the necessery permissions to acess the bucket from the redshift
-
-![Load data from the s3 bucket you have created before](s3load.png)
-
-## Redshift data and databases
-
-I have loaded some data of a fake retail and wholesale company to mimetize a process where someone would need to get a some data from a s3 bucket and dump this data into a database on redshift and from this point to clean and organize data with SQL and after this process to connect a Power Bi dashboard using the cluster endpoint so a stakeholder could understand,manage and extract data that could help him/her to developt some kpis in order to understand the business environment and to seek for opportunities or threats that could harm the company's outcome.
-
-![Retail & Wholesale schema](retail-schema.png)
-
-With the schema i get i could create a pareto analysis to show what are the products responsible for 80% of the sales and name them accordingly to the ABC analysis, where A is the top tier products responsible for 80& of the total sales, and B between 80 and 95% or 15 % of the total sales and C the other 5% of the sales, therefore we can see in this type of business what type of products are performing well and those that are not. This is a common approach to control and manage product inventory and could be applied to many business types as drugstores,retails and wholesales, food and beverages.
-
-![Pareto 80/20 rule using abc analysis](pareto.png)
 
 ## SQL Code used on redshift:
 
@@ -190,11 +223,56 @@ ORDER BY
 
 ## Connect to Power BI
 
-After we created the pareto analysis on the redshift workbench we need to open a blank power bi file , go to 'get data', type redshift and on the server window paste you endpoint that you can get from your cluster general information page, on the database you paste the name of the database you have created, and in the advanced options you can paste the pareto query to fetch only the analysis we already created.
+After completing the Pareto analysis in the Redshift Workbench, follow these steps to connect Power BI to Redshift and fetch the analysis results:
+
+Open a Blank Power BI File:
+
+Launch Power BI and create a new blank file to start building your dashboard.
+
+Get Data from Redshift:
+
+In Power BI, navigate to the "Home" tab on the top ribbon and click on "Get Data."
+
+In the "Get Data" window, search for "Redshift" and select "Amazon Redshift" from the available data sources.
+Connect to Redshift:
+
+In the "Amazon Redshift database" window, paste the endpoint URL you obtained from the Redshift cluster's general information page in the "Server" field. 
+
+This URL typically looks like your-cluster-name.xyz123.us-west-2.redshift.amazonaws.com.
+
+Provide the credentials required to connect to your Redshift cluster (username and password).
+
+## Select the Database:
+
+In the "Database" field, paste the name of the database you created in the Redshift cluster.
+Load Data into Power BI:
+
+Click "OK" to establish the connection to the Redshift database. Power BI will load the available tables and views from the selected database.
+Fetch Pareto Analysis:
+
+In the "Navigator" window, you will see a list of tables/views available in the Redshift database. Find the table/view that contains the results of the Pareto analysis, which you previously created in the Redshift Workbench. 
+
+You can give this view a meaningful name, such as "Pareto Analysis."
+
+Select the "Pareto Analysis" table/view and click "Load" to import the data into Power BI.
+
+## Create the Dashboard:
+
+Power BI will load the data, and you can start building your analytical dashboard using various visualization tools available in Power BI.
+
+Utilize charts, graphs, and tables to visualize the Pareto analysis results and any other relevant insights from the data.
+
+## Refresh Data (Optional):
+
+If your Redshift data is regularly updated, you can set up automatic data refresh in Power BI to ensure your dashboard always shows the latest information.
+
+To do this, navigate to the "Home" tab in Power BI, click on "Refresh" and select the desired refresh frequency.
+
+By following these steps, you can connect Power BI to Redshift, fetch the Pareto analysis results, and create an interactive and insightful dashboard to help stakeholders gain a deeper understanding of the data and make data-driven decisions.
 
 ## rds workbench and Pareto query:
-![Pareto query on redshift workbench](rds-workbench.png)
 
+![Pareto query on redshift workbench](rds-workbench.png)
 
 ## Connecting using endpoint 
 
@@ -213,45 +291,69 @@ After that we can create a few kpis and a get a few insights to help the stakeho
 
 ## How to Run The pyspark/postgresql data pipeline Project
 
-I ve use ubuntu to run spark on my machine and to create a spark session but i strongly suggeste that you seek more details on how to configure your machine properly to run apache tools, doc: https://spark.apache.org/docs/latest/
+Before proceeding with the PySpark/PostgreSQL data pipeline project, ensure that you have properly configured your machine to run Apache Spark. 
+For more details on configuration, refer to the official documentation: [Apache Spark Documentation](https://spark.apache.org/docs/latest/)
 
-## Running spark on your machine using ubuntu
 
-Open the ubuntu cmd and type 
+## Running Spark on Your Machine using Ubuntu
+
+Open the Ubuntu Terminal:
+
+Launch the Ubuntu terminal on your machine.
+
+## Download Spark Binaries:
+
+Use the wget command to download the Spark binaries. 
+In this example, we are downloading Spark version 3.4.1 with Hadoop 3.
 
            wget https://dlcdn.apache.org/spark/spark-3.4.1/spark-3.4.1-bin-hadoop3.tgz
 
 ![Download hadoop](download-apache.png)
 
-It will start downloading the apache spark 
+## Extract Spark Archive:
 
-To unzip the file type
+Once the download is complete, extract the Spark archive using the following command:
+bash
 
-           sudo apt-get install tar
-           tar xvf spark-3.4.1-bin-hadoop3.tgz
+           tar -xvzf spark-3.4.1-bin-hadoop3.tgz
 
 ![unzip](unzip-apache.png)
 
-You will need to set up some environment variables (optional but recommended) by adding the following lines
+## Set Environment Variables:
 
-           export SPARK_HOME=/opt/spark-3.4.1
-           export PATH=$PATH:$SPARK_HOME/bin
+Add the Spark binary path and other environment variables to your .bashrc or .bash_profile file. 
+
+Replace your_spark_path with the actual path where Spark is extracted.
+
+           export SPARK_HOME=your_spark_path
+           export PATH=$SPARK_HOME/bin:$PATH
+
+## Source the Updated File:
+
+Source the updated .bashrc or .bash_profile file to apply the changes immediately.
+
+           source ~/.bashrc
+
+           source ~/.bash_profile
            
-You can also set you environment variables on windows going to -> system -> system advanced configurations -> environment variables -> new... -> set the name of your variable, for instance SPARK_HOME, JAVA_HOME, HADOOP_HOME,etc... with the name and the path to your application. We will not cover this in details, if you got any problem related to environment variables you should address to the proper documentation. 
+## Verify Spark Installation:
 
-NOTE: You also may need to have JAVA jdk installed as well to run spark , check https://www.oracle.com/java/technologies/downloads/ for more details.
-
-## Running spark shell
-
-After downloading and unziping spark apache on your machine you can navigate to your spark folder typing 
-
+To verify that Spark is installed and configured correctly, run the following command:
+           
            cd spark-3.4.1-bin-hadoop3
            cd bin
            spark-shell
            
-Spark should start running but you also should check how to set the proper host and port in  order to allow spark connections with your applications.
-
 ![spark-shell](run-spark.png)
+
+This should launch the Spark shell, indicating that Spark is installed and ready to use.
+
+## Run the PySpark/PostgreSQL Data Pipeline Project:
+
+With Spark set up on your machine, you can proceed with the PySpark/PostgreSQL data pipeline project, where you will learn how to use PySpark to process data and create a PostgreSQL database to store and manage the preprocessed data.
+
+
+
 
 ## Creating a spark session
 
@@ -431,9 +533,7 @@ Open a Power Bi file and go to 'get data' then type 'postgresql' , put your serv
 
 ## Lessons Learned
 
-
-
-It's good to reflect on what you learned throughout the process of building this project. Here you might discuss what you would have done differently if you had more time/money/data. Did you end up choosing the right tools or would you try something else next time?
+By completing this project, i could gain valuable hands-on experience in data extraction from AWS S3, redshift, postgresql, apache spark, data preprocessing, and the development of analytical dashboards. Additionally, i have learned how to present data insights effectively to stakeholders, contributing to better decision-making processes.
 
 ## Contact
 
