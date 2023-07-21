@@ -208,8 +208,214 @@ After we created the pareto analysis on the redshift workbench we need to open a
 
 After that we can create a few kpis and a get a few insights to help the stakeholders use data to get better decisions.
 
-![Power Bi dashboard with abc analysis](imagem_2023-07-20-193927976.png)
+![Power Bi dashboard with abc analysis](
 
+
+## How to Run The pyspark/postgresql data pipeline Project
+
+I ve use ubuntu to run spark on my machine and to create a spark session but i strongly suggeste that you seek more details on how to configure your machine properly to run apache tools, doc: https://spark.apache.org/docs/latest/
+
+## Running spark on your machine using ubuntu
+
+Open the ubuntu cmd and type 
+
+           wget https://dlcdn.apache.org/spark/spark-3.4.1/spark-3.4.1-bin-hadoop3.tgz
+
+It will start downloading the apache spark 
+
+To unzip the file type
+
+           sudo apt-get install tar
+           tar xvf spark-3.4.1-bin-hadoop3.tgz
+
+You will need to set up some environment variables (optional but recommended) by adding the following lines
+
+           export SPARK_HOME=/opt/spark-3.4.1
+           export PATH=$PATH:$SPARK_HOME/bin
+           
+You can also set you environment variables on windows going to -> system -> system advanced configurations -> environment variables -> new... -> set the name of your variable, for instance SPARK_HOME, JAVA_HOME, HADOOP_HOME,etc... with the name and the path to your application. We will not cover this in details, if you got any problem related to environment variables you should address to the proper documentation. 
+
+NOTE: You also may need to have JAVA jdk installed as well to run spark , check https://www.oracle.com/java/technologies/downloads/ for more details.
+
+## Running spark shell
+
+After downloading and unziping spark apache on your machine you can navigate to your spark folder typing 
+
+           cd spark-3.4.1-bin-hadoop3
+           cd bin
+           spark-shell
+           
+Spark should start running but you also should check how to set the proper host and port in  order to allow spark connections with your applications.
+
+## Creating a spark session
+
+Open your ide and create a jupyter notebook file 
+
+
+
+```python 
+# Import your modules
+import findspark
+import boto3
+import sys
+from pyspark.sql import SparkSession
+import psycopg2
+import os
+from pyspark.sql.functions import count,col,asc,desc
+from pyspark.sql.types import StringType, IntegerType, FloatType, DoubleType, BooleanType, DateType, TimestampType
+findspark.init()
+
+# Create a spark session
+
+# Set the path to the PostgreSQL JDBC driver JAR file
+spark_jars_path = r"C:\User\spark\spark-3.4.0-bin-hadoop3\jars\postgresql-42.6.0.jar"
+
+# Configure Spark to use the PostgreSQL JDBC driver
+spark = SparkSession.builder \
+    .appName("Create PostgreSQL Database") \
+    .config("spark.driver.extraClassPath", spark_jars_path) \
+    .getOrCreate()
+
+print('session created')
+
+# Configure AWS credentials the hard way
+
+aws_access_key_id = "your_access_key"
+aws_secret_access_key = "your_secret_key"
+
+# Configure your AWS credentials the with os getenv
+
+aws_access_key_id = os.getenv("AWS_ACCESS_KEY_ID")
+aws_secret_access_key = os.getenv("AWS_SECRET_ACCESS_KEY")
+
+if not aws_access_key_id or not aws_secret_access_key:
+    raise ValueError("AWS credentials are not set as environment variables.")
+
+session = boto3.Session(
+    aws_access_key_id=aws_access_key_id,
+    aws_secret_access_key=aws_secret_access_key
+)
+
+# Replace 'your_bucket_name', 'path/to/your/file.csv', and 'your_file.csv' with your actual S3 bucket name, file path, and file name.
+
+bucket_name = 'your_bucket_name'
+file_path = 'path/to/your/file.csv'
+file_name = 'your_file.csv'
+
+# Create an S3 client
+s3_client = session.client('s3')
+
+# Read the file from S3 and store it as a DataFrame using pandas
+csv_object = s3_client.get_object(Bucket=bucket_name, Key=file_path)
+df = pd.read_csv(csv_object['Body'])
+
+# Now, 'df' contains the data from the CSV file as a pandas DataFrame
+print(df.head())
+
+# Or You can read a csv file from any folder just the test the process
+
+df = spark.read.csv('data_full.csv',encoding='utf-8',sep=',', header=True, inferSchema=True)
+
+# You can also define a parquet file from a s3 bucket
+
+s3_parquet_path = "s3://your-bucket-name/path/to/data_full.parquet"
+
+# Then read the Parquet file as a DataFrame
+
+df = spark.read.parquet(s3_parquet_path)
+
+# Show the DataFrame
+
+df.show()
+ 
+# You can check you dataframe schema as well
+# Assuming you have a DataFrame named 'df'
+
+df.printSchema()
+
+# set postgres credencials hard way
+
+postgres_host = "your host"
+postgres_port = 'any suitable port'
+postgres_database = "yourdatabase"
+postgres_user = "youruser"
+postgres_password = "yourpassword"
+new_postgres_database='postgres'
+new_schema = "schema_v1"
+new_table = "tabela_estudos_v1"
+
+# Create a connection to the default database
+
+default_conn = psycopg2.connect(
+    host=postgres_host,
+    port=postgres_port,
+    dbname="postgres",
+    user=postgres_user,
+    password=postgres_password
+)
+default_conn.autocommit = True
+
+# Connect to the newly created database
+
+conn = psycopg2.connect(
+    host=postgres_host,
+    port=postgres_port,
+    dbname=new_postgres_database,
+    user=postgres_user,
+    password=postgres_password
+)
+conn.autocommit = True
+
+# Create a cursor to execute SQL statements
+
+cursor = conn.cursor()
+
+# Mapping between Spark data types and PostgreSQL data types
+
+type_mapping = {
+    StringType(): "TEXT",
+    IntegerType(): "INTEGER",
+    FloatType(): "FLOAT",
+    DoubleType(): "DOUBLE PRECISION",
+    BooleanType(): "BOOLEAN",
+    DateType(): "DATE",
+    TimestampType(): "TIMESTAMP"
+}
+
+# Use the DataFrame schema to create the table in the database
+
+table_columns = ", ".join([f"{field.name} {type_mapping.get(field.dataType, 'TEXT')}" for field in df.schema.fields])
+create_table_query = f"CREATE TABLE IF NOT EXISTS schema_v1.{new_table} ({table_columns})"
+cursor.execute(create_table_query)
+
+# Insert the data from the DataFrame into the table
+
+df.write \
+    .format("jdbc") \
+    .option("url", f"jdbc:postgresql://{postgres_host}:{postgres_port}/postgres") \
+    .option("dbtable", f"schema_v1.{new_table}") \
+    .option("user", postgres_user) \
+    .option("password", postgres_password) \
+    .mode("append") \
+    .save()
+
+# Close the cursor and connection
+
+cursor.close()
+conn.close()
+
+# Stop the SparkSession
+
+spark.stop()conn = psycopg2.connect(
+    host=postgres_host,
+    port=postgres_port,
+    dbname=new_postgres_database,
+    user=postgres_user,
+    password=postgres_password
+)
+conn.autocommit = True
+```
+After running this code you should have sent some data to a postgresql schema and created a database if it not existed, you should be able to use SQL to fetch you data now on pgAdmin 4 
 ## Lessons Learned
 
 WIP
