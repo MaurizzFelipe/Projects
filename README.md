@@ -1,6 +1,6 @@
 # Project Title: Analytical Dashboard for Data Distribution from AWS S3
 
-Description:
+**Description**:
 
 This project demonstrates how to create a simple data pipeline to extract data from AWS S3 and another approach using PySpark. 
 
@@ -9,8 +9,6 @@ We will explore two methods:
            one that uses AWS S3 to dump and extract data and another that utilizes PySpark to achieve the same. 
 
 The main objective is to showcase scalable tools that cater to project requirements. AWS S3 serves as a widely used tool for storing and distributing data across an organization's data systems, while Redshift provides a powerful SQL management tool that BI analysts can use for data analysis.
-
-# Overview
 
 # Steps that we will see:
 
@@ -40,29 +38,31 @@ Additionally, we will explore an alternative approach using Jupyter Notebook, Sp
 ![CSV/Postgresql using spark Project architecture](pyspark.png)
  
 
-## Skills and Technologies:
+# Skills and Technologies:
 
-Python
+**Python**
 
-Pandas
+**Pandas**
 
-PySpark
+**PySpark**
 
-AWS S3
+**AWS S3**
 
-AWS Redshift
+**AWS Redshift**
 
-Boto3 (for AWS interaction)
+**Boto3 (for AWS interaction)**
 
-PowerBi/tableau (for dashboard development)
+**PowerBi/tableau (for dashboard development)**
 
-Data preprocessing and visualization techniques
+**Data preprocessing and visualization techniques**
 
-## How to Run The s3 redshift data pipeline Project
+# How to Run The s3 redshift data pipeline Project
+
 To run the S3 to Redshift Data Pipeline project, follow the steps below. 
+
 This assumes that you do not have any existing S3 buckets and will start from scratch.
 
-Step 1: Create an S3 Bucket
+## Step 1: Create an S3 Bucket
 
 Open your AWS console and navigate to the S3 service.
 
@@ -78,9 +78,9 @@ You can find practice data from various sources, such as Kaggle datasets.
 
 Upload the CSV files you downloaded from Kaggle or any other source into the S3 bucket you created.
 
-Note: It's important to ensure proper security measures for your S3 bucket to prevent data leakage in a real organization.
+**Note: It's important to ensure proper security measures for your S3 bucket to prevent data leakage in a real organization.*
 
-Step 2: Create a Redshift Cluster and a Database
+## Step 2: Create a Redshift Cluster and a Database
 
 On your AWS console, open the Redshift service.
 
@@ -92,7 +92,7 @@ Wait for your Redshift cluster to be in a "Running" state and then open the Reds
 
 Within the Redshift Workbench, create a new database and give it a name.
 
-Step 3: Load Data from S3 into the Redshift Database
+## Step 3: Load Data from S3 into the Redshift Database
 
 Ensure that you have the necessary permissions to access the S3 bucket from the Redshift cluster.
 
@@ -100,7 +100,7 @@ Use the Redshift Workbench to load the data from the S3 bucket you created earli
 
 ![Load data from the s3 bucket you have created before](s3load.png)
 
-Step 4: Redshift Data and Databases
+## Step 4: Redshift Data and Databases
 
 In this project, we have used data from a fake retail and wholesale company to simulate the process of getting data from an S3 bucket, dumping it into a Redshift database, cleaning, and organizing the data using SQL. The objective is to create a Power BI dashboard to allow stakeholders to understand, manage, and extract data for analyzing key performance indicators (KPIs) and identifying opportunities or threats.
 
@@ -112,9 +112,9 @@ The schema of the retail and wholesale company's data is shown below:
 
 With this schema, you can perform various analyses, such as a Pareto analysis to identify the products responsible for 80% of the sales (ABC analysis). This helps to classify products as follows:
 
-A: Top-tier products responsible for 80% of the total sales.
-B: Products responsible for sales between 80% and 95% (15% of total sales).
-C: Products responsible for the remaining 5% of sales.
+**A: Top-tier products responsible for 80% of the total sales.**
+**B: Products responsible for sales between 80% and 95% (15% of total sales).**
+**C: Products responsible for the remaining 5% of sales.**
 
 This approach is commonly used to manage product inventory and can be applied to various types of businesses, such as drugstores, retailers, wholesalers, food and beverages, and more.
 
@@ -129,9 +129,10 @@ Replace the example step-by-step instructions with your own.
 * We are assuming that you do not have any s3 bucket and it starting to know the tools i've mentioned before.
 
 
-## SQL Code used on redshift:
+# SQL Code used on redshift:
 
 ### Step 1: Common Table Expressions (CTEs)
+
 The query starts by defining two CTEs: category_summary and pareto_distribution.
 1.1. category_summary CTE:
 This CTE calculates various summary metrics for each product category, including: 
@@ -171,6 +172,7 @@ The final query selects columns from the pareto_distribution CTE and performs ad
            sales_per_order, 
            average_order_value, 
            and sales_percentage columns are selected directly from the pareto_distribution CTE.
+
 The CASE WHEN statement is used to assign the pareto_category based on the cumulative profit compared to the Pareto threshold.
 
 When the cumulative profit is less than or equal to the Pareto threshold (pareto_threshold), the category is assigned as 'A'.
@@ -233,16 +235,17 @@ ORDER BY
 
 After completing the Pareto analysis in the Redshift Workbench, follow these steps to connect Power BI to Redshift and fetch the analysis results:
 
-Open a Blank Power BI File:
+**Open a Blank Power BI File:**
 
 Launch Power BI and create a new blank file to start building your dashboard.
 
-Get Data from Redshift:
+**Get Data from Redshift:**
 
 In Power BI, navigate to the "Home" tab on the top ribbon and click on "Get Data."
 
 In the "Get Data" window, search for "Redshift" and select "Amazon Redshift" from the available data sources.
-Connect to Redshift:
+
+## Connect to Redshift:
 
 In the "Amazon Redshift database" window, paste the endpoint URL you obtained from the Redshift cluster's general information page in the "Server" field. 
 
@@ -253,10 +256,12 @@ Provide the credentials required to connect to your Redshift cluster (username a
 ## Select the Database:
 
 In the "Database" field, paste the name of the database you created in the Redshift cluster.
-Load Data into Power BI:
+
+**Load Data into Power BI:**
 
 Click "OK" to establish the connection to the Redshift database. Power BI will load the available tables and views from the selected database.
-Fetch Pareto Analysis:
+
+**Fetch Pareto Analysis:**
 
 In the "Navigator" window, you will see a list of tables/views available in the Redshift database. Find the table/view that contains the results of the Pareto analysis, which you previously created in the Redshift Workbench. 
 
@@ -297,11 +302,10 @@ After that we can create a few kpis and a get a few insights to help the stakeho
 ![Power Bi dashboard with abc analysis](redshift-dash.png)
 
 
-## How to Run The pyspark/postgresql data pipeline Project
+# How to Run The pyspark/postgresql data pipeline Project
 
 Before proceeding with the PySpark/PostgreSQL data pipeline project, ensure that you have properly configured your machine to run Apache Spark. 
 For more details on configuration, refer to the official documentation: [Apache Spark Documentation](https://spark.apache.org/docs/latest/)
-
 
 ## Running Spark on Your Machine using Ubuntu
 
@@ -364,8 +368,6 @@ With Spark set up on your machine, you can proceed with the PySpark/PostgreSQL d
 ## Creating a spark session
 
 Open your ide and create a jupyter notebook file 
-
-
 
 ```python 
 # Import your modules
@@ -533,17 +535,19 @@ After running this code you should have sent some data to a postgresql schema an
 
 ## Connect Postgresql to Power Bi
 
-Open Power BI:
+**Open Power BI:**
 
 Launch Power BI on your computer.
 
 ## Get Data from PostgreSQL:
 
 In Power BI, go to the "Home" tab on the top ribbon and click on "Get Data."
-Select PostgreSQL:
+
+**Select PostgreSQL:**
 
 In the "Get Data" window, search for "PostgreSQL" and select "PostgreSQL database" from the available data sources.
-Connect to PostgreSQL:
+
+**Connect to PostgreSQL:**
 
 In the "PostgreSQL database" window, enter the server name or IP address in the "Server" field. This is the location of your PostgreSQL server.
 
@@ -558,6 +562,7 @@ Enter your PostgreSQL username and password to establish the connection to the d
 ## Load Data:
 
 Once the credentials are verified, Power BI will connect to the PostgreSQL database and retrieve a list of available tables and views.
+
 Select the tables you want to import into Power BI or simply choose to load the entire dataset.
 
 ## Create Your Report:
