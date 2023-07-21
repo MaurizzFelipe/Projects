@@ -208,7 +208,7 @@ After we created the pareto analysis on the redshift workbench we need to open a
 
 After that we can create a few kpis and a get a few insights to help the stakeholders use data to get better decisions.
 
-![Power Bi dashboard with abc analysis](
+![Power Bi dashboard with abc analysis](redshift-dash.png)
 
 
 ## How to Run The pyspark/postgresql data pipeline Project
@@ -427,10 +427,11 @@ After running this code you should have sent some data to a postgresql schema an
 
 Open a Power Bi file and go to 'get data' then type 'postgresql' , put your server and the database you want to access , then it should ask for your credentials and after that you should see the tables available at your database.
 
+![postgresql](postgres-dash.png)
 
 ## Lessons Learned
 
-WIP
+
 
 It's good to reflect on what you learned throughout the process of building this project. Here you might discuss what you would have done differently if you had more time/money/data. Did you end up choosing the right tools or would you try something else next time?
 
